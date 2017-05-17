@@ -7,4 +7,5 @@ public interface Roster
 
 	public void setMatches(List<Match> list);
 	public List<Match> getMatches();
+	public List<MatchDay> getMatchDays();
 }

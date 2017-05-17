@@ -11,7 +11,7 @@ public class RandomLeague
 		CHELSIA,
 		MANUNITED,
 		MANCITY,
-		TOTANHAM,
+		/*TOTANHAM,
 		LIESTERCITY,
 		EVERTON,
 		SOUTHHAMTOM,
@@ -24,7 +24,7 @@ public class RandomLeague
 		CRYSTALPALACE,
 		SWANSACITY,
 		HULLCITY,
-		MIDLESBURG,
+		MIDLESBURG,*/
 		SUNDERLAND;
 
 		
@@ -51,10 +51,11 @@ public class RandomLeague
 		int leagueSize = RandomTeam.values().length;
 		int maxChance = leagueSize+4;
 		
-		for(Match match : _roster.getMatches()){
+		for(MatchDay matchDay : _roster.getMatchDays()){
 			
 			//maxChance = match.getAwayTeam().getRank().getRank()
 			//+ match.getHomeTeam().getRank().getRank();
+			for(Match match : matchDay.getMatchs()){
 			int chanceHomeTeam = _rand.nextInt(maxChance)
 			+(leagueSize - match.getHomeTeam().getRank().getRank());
 			int chanceAwayTeam = _rand.nextInt(maxChance)
@@ -62,7 +63,7 @@ public class RandomLeague
 				
 			System.out.println(match.getHomeTeam().getName()
 			+ "(" + chanceHomeTeam
-			+ ")\tVs.\t(" +chanceAwayTeam
+			+ ")\t\tVs.\t(" +chanceAwayTeam
 			+ ")" + match.getAwayTeam().getName());
 			
 			if(chanceHomeTeam < chanceAwayTeam) {
@@ -77,7 +78,8 @@ public class RandomLeague
 			else {
 				match.getAwayTeam().getStat().draw();
 				match.getHomeTeam().getStat().draw();
-			}
+			}}
+			System.out.println();
 		}
 		List<Stat> stats= new ArrayList<Stat>();
 		for(Team team : _teamList){
